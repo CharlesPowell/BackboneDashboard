@@ -1,5 +1,24 @@
 $(document).ready(function(event) {
 
+  var cardModel = Backbone.Model.extend({
+    initialize: function(){
+      console.log("Card Model initialized...");
+    }
+
+  });
+
+  var cardCollection = Backbone.Collection.extend({
+
+    model: cardModel,
+    url: "/api/cards",
+    initialize: function(){
+      console.log("Card Collection initialized");
+    }
+  });
+  var list = new cardCollection();
+  list.fetch();
+  list.create({title: "Sarah sports such sass", message: "HAHA suckas!"});
+
   var halfCardView = Backbone.View.extend({
 
     tagName: "article",
